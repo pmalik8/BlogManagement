@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BlogManagement.Models.Blogs>
+@{
+    ViewBag.Title = "Blogs";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="my-4">
+            Blogs
+        </h1>
+        <!-- Blog Post -->
+        @foreach (var item in Model)
+        {
+            var content = (string)item.Content ?? "";
+            var newContent = HttpUtility.HtmlDecode(content);
+
+    <div class="card mb-4">
+        <div class="center-block" style="text-align:center;margin-top:20px;margin-bottom:10px">
+            <img class="card-img-top" style="max-height:300px;max-width:250%;height:250px;width:200px;" src="~/Files/@item.FileName" alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">@item.Header</h2>
+            <p class="card-text">@Html.Raw($"{newContent?.Substring(0, 300)} ...")</p>
+            <a href="/home/Detail/@item.Id.ToString()" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            Posted on <text>@item.CreateDate.ToString("dd/MMM/yy")</text> by
+            <a>@item.ApplicationUser.Name</a>
+        </div>
+    </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#liBlog').addClass("active");
+    })
+</script>

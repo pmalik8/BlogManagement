@@ -1,0 +1,38 @@
+﻿@model BlogManagement.Models.Blogs
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+
+<div class="row">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-10">
+
+        <!-- Title -->
+        <h1 class="mt-4">@Model.Header</h1>
+
+        <!-- Author -->
+        <p class="lead">
+            by
+            <a href="#">@Model.ApplicationUser.Name</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on @Model.CreateDate.ToString("dd MMM yyyy")</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <div class="center-block" style="text-align:center;margin-top:20px;margin-bottom:10px">
+            <img class="card-img-top" style="max-height:300px;max-width:250%;height:250px;width:200px;" src="~/Files/@Model.FileName" alt="Card image cap">
+        </div>
+        
+
+        <hr>
+        @Html.Raw(HttpUtility.HtmlDecode(Model.Content))
+        <hr />
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNet.Identity;
+@{
+    var className = ViewBag.ActiveClass;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/blog-home.css" rel="stylesheet">
+    <link href="~/Content/css/blog-post.css" rel="stylesheet">
+    <link href="~/Content/css/slider.css" rel="stylesheet">
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+
+    <style>
+        .py-5 {
+            padding-bottom: 0rem !important;
+            padding-top: 1rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/home">Blog Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="liHome">
+                        <a class="nav-link" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="liAbout">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item" id="liBlog">
+                        <a class="nav-link" href="/home/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item" id="liNews">
+                        <a class="nav-link" href="/home/news">News</a>
+                    </li>
+                    <li class="nav-item" id="liContact">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    @if (User.IsInRole("Author"))
+                    {
+                        <li class="nav-item" id="liBlogList" runat="server">
+                            <a class="nav-link" href="BlogList.aspx">Blog List</a>
+                        </li>
+
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item" id="liUserList" runat="server">
+                            <a class="nav-link" href="/admin/index">Users List</a>
+                        </li>
+                    }
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li class="nav-item" id="limanage">
+                            <a class="nav-link" href="~/Account/Manage">@User.Identity.GetUserName()</a>
+                        </li>
+                        <li class="nav-item" id="liLogin">
+                            <a class="nav-link" href="/home/logout">Logoff</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item" id="liLogin">
+                            <a class="nav-link" href="~/Account/Login.aspx">Login</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Blog Management @DateTime.Now.Year.ToString()</p>
+            </div>
+            <!-- /.container -->
+        </footer>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>
