@@ -184,6 +184,10 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="App_Data\aspnet-BlogManagement-20200607125639.mdf" />
+    <Content Include="App_Data\aspnet-BlogManagement-20200607125639_log.ldf">
+      <DependentUpon>aspnet-BlogManagement-20200607125639.mdf</DependentUpon>
+    </Content>
     <Content Include="Blog.aspx" />
     <Content Include="BlogList.aspx" />
     <Content Include="Contact.aspx" />
@@ -217,6 +221,10 @@
     <Content Include="Content\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\41900911-feda-4ce0-afe2-a214d113e914.jpg" />
+    <Content Include="Files\599e8f8d-cdd0-4216-9e5f-297a22272f42.png" />
+    <Content Include="Files\choosethebestbloggingplatform.png" />
+    <Content Include="Files\no-image.png" />
     <Content Include="fonts\flaticon\backup.txt" />
     <Content Include="fonts\flaticon\font\flaticon.css" />
     <Content Include="fonts\flaticon\font\flaticon.html" />
@@ -518,9 +526,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
